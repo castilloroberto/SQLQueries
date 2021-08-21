@@ -67,6 +67,7 @@ namespace SQLQueries
             this.cb_categorias.Name = "cb_categorias";
             this.cb_categorias.Size = new System.Drawing.Size(209, 36);
             this.cb_categorias.TabIndex = 2;
+            this.cb_categorias.SelectedIndexChanged += new System.EventHandler(this.cb_categorias_SelectedIndexChanged);
             // 
             // btn_addCategoria
             // 

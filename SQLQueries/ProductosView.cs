@@ -31,6 +31,7 @@ namespace SQLQueries
             cb_categorias.DataSource = categorias.GetCategorias();
             cb_categorias.DisplayMember = "CategoryName";
             cb_categorias.ValueMember = "CategoryID";
+            cb_categorias.SelectedItem = null;
         }
         private void CargarProductos(DataTable dataTable)
         {
@@ -69,6 +70,26 @@ namespace SQLQueries
             DataTable dataTable = filtrados.AsDataView().ToTable();
             CargarProductos(dataTable);
 
+
+        }
+
+        private void cb_categorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string buscar = cb_categorias.SelectedItem == null ? "" : cb_categorias.Text;
+
+            if (buscar != null)
+            {
+
+                var filtrados = listaProductos.AsEnumerable().Where(x =>
+                {
+
+                    return x.Field<string>("Categoria") == buscar;
+
+
+                });
+                DataTable dataTable = filtrados.AsDataView().ToTable();
+                CargarProductos(dataTable);
+            }
 
         }
     }
